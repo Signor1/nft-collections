@@ -37,7 +37,7 @@ const useHandleMint = (receiver) => {
       const contract = getProposalsContract(signer);
 
       try {
-        const transferTransaction = await contract.safeMint(
+        const transferTransaction = await contract.transferFrom(
           address,
           receiver,
           id
