@@ -8,12 +8,17 @@ import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 const useMyNfts = () => {
   const { address } = useWeb3ModalAccount();
   const [data, setData] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const tokenIDs = useMemo(
     () => [...Array.from({ length: 30 })].map((_, index) => index),
     []
   );
 
   useEffect(() => {
+    setIsLoading(true);
+
     (async () => {
       const itf = new ethers.Interface(erc721);
       const calls = tokenIDs.map((x) => ({
@@ -51,9 +56,10 @@ const useMyNfts = () => {
 
       setData(ownedTokenIds);
     })();
+    setIsLoading(false);
   }, [address, tokenIDs]);
 
-  return data;
+  return [data, isLoading];
 };
 
 export default useMyNfts;

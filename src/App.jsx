@@ -14,26 +14,28 @@ configureWeb3Modal();
 
 function App() {
   const tokensData = useCollections();
-  const myTokenIds = useMyNfts();
+  const [myTokenIds, isLoading] = useMyNfts();
 
   const myTokensData = tokensData.filter((x, index) =>
     myTokenIds.includes(index)
   );
   return (
-    <Container>
-      <Header />
-      <main className="mt-6">
-        <AppTabs
-          MyNfts={
-            <MyNFT myTokensData={myTokensData} />
-          }
-          AllCollections={
-            <Collections tokensData={tokensData} />
-          }
-        />
-      </main>
-      <ToastContainer />
-    </Container>
+    <section className="w-full min-h-screen bg-gray-950 text-gray-100">
+      <Container >
+        <Header />
+        <main className="mt-6">
+          <AppTabs
+            MyNfts={
+              <MyNFT myTokensData={myTokensData} isLoading={isLoading} />
+            }
+            AllCollections={
+              <Collections tokensData={tokensData} />
+            }
+          />
+        </main>
+        <ToastContainer />
+      </Container>
+    </section>
   );
 }
 

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { isSupportedChain } from "../utils";
 import { getProvider } from "../constants/providers";
 import { getProposalsContract } from "../constants/contracts";
-import { ethers } from "ethers";
+import { ethers, isAddress } from "ethers";
 
 const useHandleMint = (address) => {
   const { chainId } = useWeb3ModalAccount();
@@ -17,6 +17,12 @@ const useHandleMint = (address) => {
     async (id) => {
       if (!isSupportedChain(chainId))
         return toast.error("Wrong network !", { position: "top-right" });
+
+      //checking for valid address
+      if (!isAddress(address))
+        return toast.error("Invalid Address !", {
+          position: "top-right",
+        });
 
       const readWriteProvider = getProvider(walletProvider);
 
