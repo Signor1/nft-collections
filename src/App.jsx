@@ -7,6 +7,8 @@ import useCollections from "./hooks/useCollections";
 import useMyNfts from "./hooks/useMyNfts";
 import Collections from "./component/Collections";
 import MyNFT from "./component/MyNFT";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 configureWeb3Modal();
 
@@ -30,6 +32,7 @@ function App() {
           }
         />
       </main>
+      <ToastContainer />
     </Container>
   );
 }

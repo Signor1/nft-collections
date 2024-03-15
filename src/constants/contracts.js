@@ -1,9 +1,9 @@
 import { ethers } from "ethers";
-import Abi from "./abi.json";
+import erc721 from "./erc721.json";
 
 export const getProposalsContract = (providerOrSigner) =>
   new ethers.Contract(
-    import.meta.env.VITE_ballot_contract_address,
-    Abi,
+    import.meta.env.VITE_CONTRACT_ADDRESS,
+    erc721,
     providerOrSigner
   );
