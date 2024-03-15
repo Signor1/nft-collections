@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
 
 const useCollections = () => {
-    // eslint-disable-next-line no-unused-vars
-    const [data, setData] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState([]);
 
-    useEffect(() => {
-        (async () => {
-            const tokenIDs = [...Array.from({ length: 30 })].map(
-                (_, index) => index
-            );
+  useEffect(() => {
+    (async () => {
+      const tokenIDs = [...Array.from({ length: 30 })].map((_, index) => index);
 
-            const promises = tokenIDs.map((x) =>
-                fetch(`${import.meta.env.VITE_token_base_url}/${x}`)
-            );
+      const promises = tokenIDs.map((x) =>
+        fetch(`${import.meta.env.VITE_TOKEN_BASE_URL}/${x}`)
+      );
 
-            const tokensMetadataResponse = await Promise.all(promises);
+      const tokensMetadataResponse = await Promise.all(promises);
 
-            const tokensMetadataJson = [];
+      const tokensMetadataJson = [];
 
-            for (let i = 0; i < tokensMetadataResponse.length; i++) {
-                const json = await tokensMetadataResponse[i].json();
-                tokensMetadataJson.push(json);
-            }
+      for (let i = 0; i < tokensMetadataResponse.length; i++) {
+        const json = await tokensMetadataResponse[i].json();
+        tokensMetadataJson.push(json);
+      }
 
-            setData(tokensMetadataJson);
-        })();
-    }, []);
+      setData(tokensMetadataJson);
+    })();
+  }, []);
 
-    return data;
+  return data;
 };
 
 export default useCollections;
