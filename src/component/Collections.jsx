@@ -82,7 +82,7 @@ const Collections = ({ tokensData }) => {
                                                 onClick={() =>
                                                     handleMint(x.edition)
                                                 }
-                                                className="bg-sky-600 px-6 py-2 rounded-md text-white"
+                                                className="bg-blue-500 px-6 py-2 rounded-md text-white"
                                             >
                                                 Mint
                                             </button>

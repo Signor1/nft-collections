@@ -62,7 +62,7 @@ const MyNFT = ({ myTokensData, isLoading }) => {
                                         </Button>
                                     </Dialog.Close>
                                     <Dialog.Close>
-                                        <button onClick={() => handleTransfer(x.edition)} className="bg-sky-600 px-6 py-2 rounded-md text-white">Transfer</button>
+                                        <button onClick={() => handleTransfer(x.edition)} className="bg-blue-500 px-6 py-2 rounded-md text-white">Transfer</button>
                                     </Dialog.Close>
                                 </Flex>
                             </Dialog.Content>
